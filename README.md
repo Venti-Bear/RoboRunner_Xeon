@@ -6,7 +6,8 @@ This is my first attempt at creating a platformer game. My name is Nick, the (cu
 
 ## My inspiration
 ![Megaman-X Screenshot](https://cdn.mobygames.com/d966a4b0-ab9d-11ed-b9a3-02420a000197.webp) ![Megaman-X Screenshot 2](https://cdn.mobygames.com/3584578c-ab8b-11ed-87ec-02420a00019c.webp)
-*screenshots of Megaman X's starter stage and Sting Chameleon bosses respectively*
+
+*screenshots of Megaman X's starter stage and Sting Chameleon boss respectively*
 
 ## Getting Started
 To get started with the project, you'll need [Unity 2022.1.23f1](https://unity.com/) or later. Clone the repo and open the project in Unity to start exploring.
