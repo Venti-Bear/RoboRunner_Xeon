@@ -13,7 +13,7 @@ This is my first attempt at creating a platformer game. My name is Nick, the (cu
 To get started with the project, you'll need [Unity 2022.1.23f1](https://unity.com/) or later. Clone the repo and open the project in Unity to start exploring.
 
 ```bash
-git clone https://github.com/username/Robo-Runners-Xeon.git
+git clone https://github.com/Venti-Bear/Robo-Runners-Xeon.git
 ```
 
 ## Contributing
