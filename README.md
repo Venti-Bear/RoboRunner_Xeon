@@ -10,7 +10,7 @@ This is my first attempt at creating a platformer game. My name is Nick, the (cu
 *screenshots of Megaman X's starter stage and Sting Chameleon boss respectively*
 
 ## Getting Started
-To get started with the project, you'll need [Unity 2022.1.23f1](https://unity.com/) or later. Clone the repo and open the project in Unity to start exploring.
+To get started with the project, you'll need [Unity 2022.2.21f1](https://unity.com/) or later. Clone the repo and open the project in Unity to start exploring.
 
 ```bash
 git clone https://github.com/Venti-Bear/Robo-Runners-Xeon.git
