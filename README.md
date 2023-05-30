@@ -1,6 +1,6 @@
-# Robo Runners Xeon 
+# RoboRunner Xeon 
 
-Welcome to the repository for _Robo Runners Xeon_, a platformer game heavily inspired by the Megaman X series.
+Welcome to the repository for _RoboRunner Xeon_, a platformer game heavily inspired by the Megaman X series.
 
 This is my first attempt at creating a platformer game. My name is Nick, the (currently sole) developer of this project. I'm using RoboRunner as an opportunity to learn and test my understanding of platformer games and how to create them (hopefully in a proper manner) in Unity. 
 
