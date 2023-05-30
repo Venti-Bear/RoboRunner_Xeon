@@ -9,6 +9,8 @@ This is my first attempt at creating a platformer game. My name is Nick, the (cu
 
 *screenshots of Megaman X's starter stage and Sting Chameleon boss respectively*
 
+I aspire to reach something as classic as the X series and will endeavor to create something going in that direction.
+
 ## Getting Started
 To get started with the project, you'll need [Unity 2022.2.21f1](https://unity.com/) or later. Clone the repo and open the project in Unity to start exploring.
 
@@ -18,8 +20,8 @@ git clone https://github.com/Venti-Bear/Robo-Runners-Xeon.git
 
 ## Contributing
 While I'm currently working on this project solo, I may add collaborators in the future. If you're interested in contributing, feel free to open an issue or submit a pull request.
-License
 
+##License
 This project is licensed under the GNU General Public License v3.0. See the LICENSE file for details.
 
 ## Contact
