@@ -1,38 +1,38 @@
 using UnityEngine;
 
+/// <summary>
+/// This script manages the player character's basic movements.
+/// The character is able to move horizontally and jump while on the ground.
+/// The speed of movement and jump height can be adjusted through public properties.
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 10.0f;
-    public float jumpVelocity = 5.0f;
-    public float groundCheckDistance = 0.1f;
-    public float height;
+    public PlayerConfig config;
+
+    private float height;
     private Rigidbody2D rb;
 
-    void Start()
-    {
+    /// <summary>
+    /// Initial setup for the player controller, called at the start of the game.
+    /// </summary>
+    void Start() {
         rb = GetComponent<Rigidbody2D>();
+        height = gameObject.GetComponent<SpriteRenderer>().bounds.size.y;
     }
 
-    void Update()
-    {
+    /// <summary>
+    /// Update is called once per frame and manages the logic for player movement and jumping.
+    /// </summary>
+    void Update() {
         float moveHorizontal = Input.GetAxis("Horizontal");
+        rb.velocity = new Vector2(moveHorizontal * config.speed, rb.velocity.y);
 
-        // Move the character
-        rb.velocity = new Vector2(moveHorizontal * speed, rb.velocity.y);
-
-        // Calculate the starting point of the raycast
         Vector2 raycastOrigin = (Vector2)transform.position - (height / 2) * Vector2.up;
+        bool isGrounded = Physics2D.Raycast(raycastOrigin, Vector2.down, config.groundCheckDistance);
+        Debug.DrawRay(raycastOrigin, Vector2.down * config.groundCheckDistance, Color.red);
 
-        // Use a raycast straight downwards from the base of the player to check for ground
-        bool isGrounded = Physics2D.Raycast(raycastOrigin, Vector2.down, groundCheckDistance);
-
-        // Draw a debug ray. Note that this will be visible in Scene view, not in Game view.
-        Debug.DrawRay(raycastOrigin, Vector2.down * groundCheckDistance, Color.red);
-
-        // If the player is standing on the ground and presses the Space key, they should jump
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
+        if (Input.GetButtonDown("Jump") && isGrounded) {
+            rb.velocity = new Vector2(rb.velocity.x, config.jumpVelocity);
         }
     }
 }
