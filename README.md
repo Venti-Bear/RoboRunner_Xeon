@@ -21,7 +21,7 @@ git clone https://github.com/Venti-Bear/Robo-Runners-Xeon.git
 ## Contributing
 While I'm currently working on this project solo, I may add collaborators in the future. If you're interested in contributing, feel free to open an issue or submit a pull request.
 
-##License
+## License
 This project is licensed under the GNU General Public License v3.0. See the LICENSE file for details.
 
 ## Contact
