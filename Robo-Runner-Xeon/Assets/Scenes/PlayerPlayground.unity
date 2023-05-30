@@ -546,10 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9094bd4dacb8a46bf037b21f27c588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
-  jumpVelocity: 15
-  groundCheckDistance: 0.1
-  height: 1.28
+  config: {fileID: 11400000, guid: 7b93a204882fcb14099ab78588ebafb1, type: 2}
 --- !u!114 &1587233624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,8 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d12ee37a0ec2d24b85db88d4a501ce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpVelocity: 10
-  groundCheckDistance: 0.1
+  config: {fileID: 11400000, guid: 7b93a204882fcb14099ab78588ebafb1, type: 2}
 --- !u!114 &1587233625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,7 +574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   airDashDuration: 0.25
   airDashSpeed: 15
-  groundCheckDistance: 0.1
+  config: {fileID: 11400000, guid: 7b93a204882fcb14099ab78588ebafb1, type: 2}
 --- !u!1 &1762275043
 GameObject:
   m_ObjectHideFlags: 0

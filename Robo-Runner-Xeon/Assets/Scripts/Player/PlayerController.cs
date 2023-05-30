@@ -22,9 +22,11 @@ public class PlayerController : MonoBehaviour
 
     /// <summary>
     /// Update is called once per frame and manages the logic for player movement and jumping.
+    /// Jumping height is variable; the longer the jump button is held, the higher the jump, to a limit.
+    /// Variable height is reset to zero rather than decelerated for a more responsive mini-jump.
     /// </summary>
     void Update() {
-        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveHorizontal = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(moveHorizontal * config.speed, rb.velocity.y);
 
         Vector2 raycastOrigin = (Vector2)transform.position - (height / 2) * Vector2.up;
@@ -33,6 +35,10 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded) {
             rb.velocity = new Vector2(rb.velocity.x, config.jumpVelocity);
+        }
+
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0) {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
         }
     }
 }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be3d062e37416c0489126b905c789f70, type: 3}
   m_Name: StandardPlayer
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpVelocity: 5
+  speed: 5
+  jumpVelocity: 10
   groundCheckDistance: 0.1
