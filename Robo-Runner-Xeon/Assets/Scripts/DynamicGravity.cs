@@ -4,6 +4,7 @@ public class DynamicGravity : MonoBehaviour
 {
     public float AgainstGravityScale = 1f;
     public float FallGravityScale = 2f;
+    public bool applyDynamicG { get; set; } = true;
 
     private Rigidbody2D m_Rigidbody;
 
@@ -14,6 +15,9 @@ public class DynamicGravity : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Certain mechanics require specific gravity be applied rather than dynamic gravity
+        if (!applyDynamicG) return;
+
         // Calculate our direction relative to the global gravity.
         var direction = Vector2.Dot(m_Rigidbody.velocity, Physics2D.gravity);
         

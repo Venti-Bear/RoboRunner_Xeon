@@ -19,27 +19,18 @@ public class DoubleJump : MonoBehaviour {
 
     public bool isGrounded => rb.IsTouching(contactFilter);
 
-    /// <summary>
-    /// Initial setup for the double jump mechanic, called at the start of the game.
-    /// </summary>
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         height = gameObject.GetComponent<SpriteRenderer>().bounds.size.y;
     }
 
-    /// <summary>
-    /// Update is called once per frame and manages the logic for the double jump mechanic.
-    /// </summary>
     void Update() {
-        Vector2 raycastOrigin = (Vector2)transform.position - (height / 2) * Vector2.up;
-        Debug.DrawRay(raycastOrigin, Vector2.down * config.groundCheckDistance, Color.red);
-
         if (isGrounded) {
             canDoubleJump = true;
         }
 
         if (Input.GetButtonDown("Jump") && !isGrounded && canDoubleJump) {
-            rb.velocity = new Vector2(rb.velocity.x, config.jumpVelocity);
+            rb.AddForce(Vector2.up * config.jumpImpulse * 1.5f, ForceMode2D.Impulse);
             canDoubleJump = false;
         }
     }

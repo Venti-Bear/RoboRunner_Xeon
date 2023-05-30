@@ -5,15 +5,15 @@ public class PlayerConfig : ScriptableObject {
     /// <summary>
     /// The horizontal speed that the player moves at.
     /// </summary>
-    public float speed = 10.0f;
+    public float speed = 5.0f;
     
     /// <summary>
-    /// The upward velocity that will be applied when the player jumps.
+    /// The upward impulse force that will be applied when the player jumps.
     /// </summary>
-    public float jumpVelocity = 5.0f;
-    
+    public float jumpImpulse = 5.0f;
+
     /// <summary>
-    /// The distance below the player that will be checked to determine if the player is grounded.
+    /// The sideways impulse force that will be applied when the player air-dashes.
     /// </summary>
-    public float groundCheckDistance = 0.1f;
+    public float airDashImpulse = 10.0f;
 }
