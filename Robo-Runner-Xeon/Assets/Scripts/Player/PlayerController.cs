@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -8,10 +9,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public PlayerConfig config;
+    public ContactFilter2D contactFilter;
 
     private float height;
     private Rigidbody2D rb;
 
+    public bool isGrounded => rb.IsTouching(contactFilter);
     /// <summary>
     /// Initial setup for the player controller, called at the start of the game.
     /// </summary>
@@ -30,7 +33,6 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(moveHorizontal * config.speed, rb.velocity.y);
 
         Vector2 raycastOrigin = (Vector2)transform.position - (height / 2) * Vector2.up;
-        bool isGrounded = Physics2D.Raycast(raycastOrigin, Vector2.down, config.groundCheckDistance);
         Debug.DrawRay(raycastOrigin, Vector2.down * config.groundCheckDistance, Color.red);
 
         if (Input.GetButtonDown("Jump") && isGrounded) {

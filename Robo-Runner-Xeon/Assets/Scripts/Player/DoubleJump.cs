@@ -11,10 +11,13 @@ using UnityEngine;
 /// </summary>
 public class DoubleJump : MonoBehaviour {
     public PlayerConfig config;
+    public ContactFilter2D contactFilter;
     
     private Rigidbody2D rb;
     private bool canDoubleJump = true;
     private float height;
+
+    public bool isGrounded => rb.IsTouching(contactFilter);
 
     /// <summary>
     /// Initial setup for the double jump mechanic, called at the start of the game.
@@ -29,7 +32,6 @@ public class DoubleJump : MonoBehaviour {
     /// </summary>
     void Update() {
         Vector2 raycastOrigin = (Vector2)transform.position - (height / 2) * Vector2.up;
-        bool isGrounded = Physics2D.Raycast(raycastOrigin, Vector2.down, config.groundCheckDistance);
         Debug.DrawRay(raycastOrigin, Vector2.down * config.groundCheckDistance, Color.red);
 
         if (isGrounded) {
