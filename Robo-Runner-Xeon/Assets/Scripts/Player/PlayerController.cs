@@ -8,13 +8,14 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-    public PlayerConfig config;
+    [SerializeField] public PlayerConfig config;
     public ContactFilter2D contactFilter;
 
     private float height;
     private Rigidbody2D rb;
+    private bool pressedJump, releasedJump;
 
-    public bool isGrounded => rb.IsTouching(contactFilter);
+    [SerializeField] public bool isGrounded => rb.IsTouching(contactFilter);
     /// <summary>
     /// Initial setup for the player controller, called at the start of the game.
     /// </summary>
@@ -23,23 +24,36 @@ public class PlayerController : MonoBehaviour
         height = gameObject.GetComponent<SpriteRenderer>().bounds.size.y;
     }
 
+    void Update() {
+        if (Input.GetButtonDown("Jump")) {
+            pressedJump = true;
+        }
+
+        if (Input.GetButtonUp("Jump")) {
+            releasedJump = true;
+        }
+    }
+
     /// <summary>
-    /// Update is called once per frame and manages the logic for player movement and jumping.
+    /// Manages the logic for player movement and jumping.
     /// Jumping height is variable; the longer the jump button is held, the higher the jump, to a limit.
     /// Upward speed is reset to zero rather than decelerated for a more responsive mini-jump.
     /// </summary>
-    void Update() {
+    void FixedUpdate() {
         if (isGrounded){
             float moveHorizontal = Input.GetAxisRaw("Horizontal");
             rb.velocity = new Vector2(moveHorizontal * config.speed, rb.velocity.y);
         }
 
-        if (Input.GetButtonDown("Jump") && isGrounded) {
+        if (pressedJump && isGrounded) {
             rb.AddForce(Vector2.up * config.jumpImpulse, ForceMode2D.Impulse);
         }
 
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0) {
+        if (releasedJump && rb.velocity.y > 0) {
             rb.velocity = new Vector2(rb.velocity.x, 0);
         }
+        
+        pressedJump = false;
+        releasedJump = false;
     }
 }

@@ -18,7 +18,8 @@ public class AirDash : MonoBehaviour
     public float airDashDuration = 0.3f;
 
     public ContactFilter2D contactFilter;
-    public PlayerConfig config;
+
+    [SerializeField] public PlayerConfig config;
 
     private float height;
     private Rigidbody2D rb;
