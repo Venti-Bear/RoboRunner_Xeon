@@ -9,9 +9,7 @@ I'll also be doing some hybrid work with chatGPT, which I'll be relying on for m
 ## My inspiration
 ![Megaman-X Screenshot](https://cdn.mobygames.com/d966a4b0-ab9d-11ed-b9a3-02420a000197.webp) ![Megaman-X Screenshot 2](https://cdn.mobygames.com/3584578c-ab8b-11ed-87ec-02420a00019c.webp)
 
-*screenshots of Megaman X's starter stage and Sting Chameleon boss respectively*
-
-I aspire to reach something as classic as the X series and will endeavor to create something going in that direction.
+I loved the Megaman X series as a child and the show-don't-tell philosophy of teaching players how to play the game that it adopted. I endeavor to create something as fun and intuitive with this project.
 
 ## Getting Started
 To get started with the project, you'll need [Unity 2022.2.21f1](https://unity.com/) or later. Clone the repo and open the project in Unity to start exploring.
