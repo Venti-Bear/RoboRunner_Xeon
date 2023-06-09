@@ -11,8 +11,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public PlayerConfig config;
     public ContactFilter2D contactFilter;
 
-    private float height;
+    private SpriteRenderer sprite;
     private Rigidbody2D rb;
+    private Animator anim;
+    
+    private float height;
     private bool pressedJump, releasedJump;
 
     [SerializeField] public bool isGrounded => rb.IsTouching(contactFilter);
@@ -21,7 +24,9 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Start() {
         rb = GetComponent<Rigidbody2D>();
-        height = gameObject.GetComponent<SpriteRenderer>().bounds.size.y;
+        anim = GetComponent<Animator>();
+        sprite = gameObject.GetComponent<SpriteRenderer>();
+        height = sprite.bounds.size.y;
     }
 
     void Update() {
@@ -32,6 +37,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonUp("Jump")) {
             releasedJump = true;
         }
+
+        sprite.flipX = rb.velocity.x < 0;
+        
+        anim.SetFloat("Vertical", rb.velocity.y);
+        anim.SetBool("isGrounded", isGrounded);
+        anim.SetBool("isRunning", rb.velocity.x != 0);
     }
 
     /// <summary>
@@ -52,7 +63,7 @@ public class PlayerController : MonoBehaviour
         if (releasedJump && rb.velocity.y > 0) {
             rb.velocity = new Vector2(rb.velocity.x, 0);
         }
-        
+
         pressedJump = false;
         releasedJump = false;
     }

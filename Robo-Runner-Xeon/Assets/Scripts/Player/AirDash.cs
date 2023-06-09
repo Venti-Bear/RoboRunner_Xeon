@@ -21,6 +21,8 @@ public class AirDash : MonoBehaviour
 
     [SerializeField] public PlayerConfig config;
 
+    private Animator anim;
+
     private float height;
     private Rigidbody2D rb;
     private bool canAirDash = true;
@@ -31,6 +33,8 @@ public class AirDash : MonoBehaviour
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+
         height = gameObject.GetComponent<SpriteRenderer>().bounds.size.y;
         dynamicGravity = gameObject.GetComponent<DynamicGravity>();
     }
@@ -50,6 +54,8 @@ public class AirDash : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)) && canAirDash && !isGrounded) {
             StartCoroutine(airDash(Input.GetKeyDown(KeyCode.Q) ? -1 : 1));
         }
+
+        anim.SetBool("isDashing", isAirDashing);
     }
 
     /// <summary>
