@@ -38,7 +38,9 @@ public class PlayerController : MonoBehaviour
             releasedJump = true;
         }
 
-        sprite.flipX = rb.velocity.x < 0;
+        if (rb.velocity.x != 0) {
+            sprite.flipX = rb.velocity.x < 0;
+        }
         
         anim.SetFloat("Vertical", rb.velocity.y);
         anim.SetBool("isGrounded", isGrounded);
