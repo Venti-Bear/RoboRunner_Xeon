@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
 {
     [Header("General Settings")]
     [SerializeField] public PlayerConfig config;
-    public ContactFilter2D groundDetection;
+    public ContactFilter2D contactFilter;
+    public Collider2D groundDetector;
 
     private SpriteRenderer sprite;
     private Rigidbody2D rb;
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private float height;
     private bool pressedJump, releasedJump;
 
-    public bool isGrounded => rb.IsTouching(groundDetection);
+    public bool isGrounded => groundDetector.IsTouching(contactFilter);
 
     /// <summary>
     /// Initial setup for the player controller, called at the start of the game.

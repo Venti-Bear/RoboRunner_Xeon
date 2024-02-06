@@ -36,7 +36,7 @@ public class DoubleJump : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (pressedDoubleJump && !isGrounded && canDoubleJump) {
+        if (pressedDoubleJump && !isGrounded && canDoubleJump && !config.isDashing) {
             rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * config.jumpImpulse, ForceMode2D.Impulse);
             canDoubleJump = false;
