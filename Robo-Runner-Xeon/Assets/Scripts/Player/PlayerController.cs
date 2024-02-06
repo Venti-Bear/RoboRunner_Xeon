@@ -8,8 +8,9 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
+    [Header("General Settings")]
     [SerializeField] public PlayerConfig config;
-    public ContactFilter2D contactFilter;
+    public ContactFilter2D groundDetection;
 
     private SpriteRenderer sprite;
     private Rigidbody2D rb;
@@ -18,7 +19,8 @@ public class PlayerController : MonoBehaviour
     private float height;
     private bool pressedJump, releasedJump;
 
-    [SerializeField] public bool isGrounded => rb.IsTouching(contactFilter);
+    public bool isGrounded => rb.IsTouching(groundDetection);
+
     /// <summary>
     /// Initial setup for the player controller, called at the start of the game.
     /// </summary>
@@ -53,13 +55,13 @@ public class PlayerController : MonoBehaviour
     /// Upward speed is reset to zero rather than decelerated for a more responsive mini-jump.
     /// </summary>
     void FixedUpdate() {
-        if (isGrounded){
+        if (isGrounded && !config.isDashing){
             float moveHorizontal = Input.GetAxisRaw("Horizontal");
             rb.velocity = new Vector2(moveHorizontal * config.speed, rb.velocity.y);
         }
 
         if (pressedJump && isGrounded) {
-            rb.AddForce(Vector2.up * config.jumpImpulse, ForceMode2D.Impulse);
+            rb.AddForce((Vector2.up * config.jumpImpulse), ForceMode2D.Impulse);
         }
 
         if (releasedJump && rb.velocity.y > 0) {

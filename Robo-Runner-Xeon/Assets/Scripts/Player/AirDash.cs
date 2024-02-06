@@ -4,18 +4,18 @@ using UnityEngine;
 using System;
 
 /// <summary>
-/// This script controls the "Air Dash" mechanic of the player character.
-/// The character is able to dash in the air in a specified direction (left or right) for a 
-/// defined duration. The mechanic can only be performed once while the character is airborne,
+/// This script controls the "Dash" mechanic of the player character.
+/// The character is able to dash, either on the ground or in the air, in a specified direction (left or right) for a 
+/// defined duration. If airborne, the mechanic can only be performed once,
 /// and it can be performed again only after the character lands on the ground. The direction 
-/// of the air dash is determined based on the player's input (Q for left, E for right).
+/// of the dash is determined based on the player's input (Q for left, E for right).
 /// </summary>
 public class AirDash : MonoBehaviour
 {
     /// <summary>
     /// Duration of the air dash.
     /// </summary>
-    public float airDashDuration = 0.3f;
+    public float dashDuration = 0.3f;
 
     public ContactFilter2D contactFilter;
 
@@ -25,8 +25,7 @@ public class AirDash : MonoBehaviour
 
     private float height;
     private Rigidbody2D rb;
-    private bool canAirDash = true;
-    private bool isAirDashing = false;
+    private bool canDash = true;
     private DynamicGravity dynamicGravity;
 
     public bool isGrounded => rb.IsTouching(contactFilter);
@@ -43,19 +42,21 @@ public class AirDash : MonoBehaviour
     /// On each frame, checks if the character is on the ground and handles the air dash input.
     /// </summary>
     void Update() {
-        if (isGrounded) {
-            canAirDash = true;
+        if (isGrounded && !config.isDashing) {
+            canDash = true;
         }
 
-        if (!isGrounded && !isAirDashing && Input.GetAxisRaw("Horizontal") != 0) {
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * config.speed, rb.velocity.y);
+        if (!isGrounded && !config.isDashing && Input.GetAxisRaw("Horizontal") != 0) {
+            // rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * config.speed, rb.velocity.y);
+            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * (canDash ? config.speed : Mathf.Abs(rb.velocity.x)), rb.velocity.y);
+            Debug.Log(Input.GetAxisRaw("Horizontal"));
         }
 
-        if ((Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)) && canAirDash && !isGrounded) {
-            StartCoroutine(airDash(Input.GetKeyDown(KeyCode.Q) ? -1 : 1));
+        if ((Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)) && canDash) {
+            StartCoroutine(dash(Input.GetKeyDown(KeyCode.Q) ? -1 : 1));
         }
 
-        anim.SetBool("isDashing", isAirDashing);
+        anim.SetBool("isDashing", config.isDashing);
     }
 
     /// <summary>
@@ -64,23 +65,25 @@ public class AirDash : MonoBehaviour
     /// turn gravity back on.
     /// </summary>
     /// <param name="direction">Direction of the air dash (-1 for left, 1 for right).</param>
-    IEnumerator airDash(int direction) {
-        canAirDash = false;
-        isAirDashing = true;
+    IEnumerator dash(int direction) {
+        canDash = false;
+        config.isDashing = true;
         
         dynamicGravity.applyDynamicG = false;
         rb.velocity = Vector2.zero;
-        rb.gravityScale = 0;
+        if(!isGrounded){
+            rb.gravityScale = 0;
+        }
 
-        rb.AddForce(new Vector2(direction * config.airDashImpulse, 0), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(direction * config.dashImpulse, 0), ForceMode2D.Impulse);
         if (Math.Abs(rb.velocity.x) > config.speed) {
-            rb.velocity = new Vector2(config.airDashImpulse * direction, 0);
+            rb.velocity = new Vector2(config.dashImpulse * direction, 0);
         } else {
             rb.velocity = new Vector2(rb.velocity.x, 0);
         }
-        yield return new WaitForSeconds(airDashDuration);
+        yield return new WaitForSeconds(dashDuration);
 
         dynamicGravity.applyDynamicG = true;
-        isAirDashing = false;
+        config.isDashing = false;
     }
 }

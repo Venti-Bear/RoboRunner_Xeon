@@ -13,7 +13,13 @@ public class PlayerConfig : ScriptableObject {
     public float jumpImpulse = 5.0f;
 
     /// <summary>
-    /// The sideways impulse force that will be applied when the player air-dashes.
+    /// The sideways impulse force that will be applied when the player dashes.
     /// </summary>
-    public float airDashImpulse = 10.0f;
+    public float dashImpulse = 10.0f;
+
+    /// <summary>
+    /// The parameter that verifies if the player is currently in a dash action.
+    /// Used to avoid dash spam and disregard input during a dash.
+    /// </summary>
+    public bool isDashing { get; set; } = false;
 }
