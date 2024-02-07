@@ -374,7 +374,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.23584908, g: 0.1797793, b: 0.16576186, a: 1}
+  m_Color: {r: 0.5188679, g: 0.2765664, b: 0.2765664, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -624,7 +624,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.23584908, g: 0.1797793, b: 0.16576186, a: 1}
+  m_Color: {r: 0.5188679, g: 0.2765664, b: 0.2765664, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -782,7 +782,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.23584908, g: 0.1797793, b: 0.16576186, a: 1}
+  m_Color: {r: 0.5188679, g: 0.2765664, b: 0.2765664, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -809,6 +809,7 @@ GameObject:
   - component: {fileID: 1587233627}
   - component: {fileID: 1587233626}
   - component: {fileID: 1587233630}
+  - component: {fileID: 1587233631}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1008,21 +1009,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a3cb2681948ec4cb3aa2f0cf05d66c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airDashDuration: 0.3
+  dashDuration: 0.3
   contactFilter:
     useTriggers: 0
     useLayerMask: 0
     useDepth: 0
     useOutsideDepth: 0
-    useNormalAngle: 1
+    useNormalAngle: 0
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
       m_Bits: 64
     minDepth: 0
     maxDepth: 0
-    minNormalAngle: 45
-    maxNormalAngle: 135
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  groundDetector: {fileID: 1587233631}
   config: {fileID: 11400000, guid: bde75fa7958d8504d9602b148087c201, type: 2}
 --- !u!114 &1587233629
 MonoBehaviour:
@@ -1042,15 +1044,16 @@ MonoBehaviour:
     useLayerMask: 0
     useDepth: 0
     useOutsideDepth: 0
-    useNormalAngle: 1
+    useNormalAngle: 0
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 64
+      m_Bits: 0
     minDepth: 0
     maxDepth: 0
-    minNormalAngle: 45
-    maxNormalAngle: 135
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  groundDetector: {fileID: 1587233631}
 --- !u!95 &1587233630
 Animator:
   serializedVersion: 5
@@ -1072,6 +1075,51 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &1587233631
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587233618}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.035273314, y: -0.05731386}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.4057971, y: 0.38636363}
+    oldSize: {x: 2.15625, y: 1.375}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.46089745, y: 0.80977714}
+  m_EdgeRadius: 0
 --- !u!1 &1762275043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,7 +1268,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.23584908, g: 0.1797793, b: 0.16576186, a: 1}
+  m_Color: {r: 0.5188679, g: 0.2765664, b: 0.2765664, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1368,8 +1416,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -482.47, y: 418.88}
-  m_SizeDelta: {x: 849.07, y: 156.25}
+  m_AnchoredPosition: {x: -431.26, y: 294.43}
+  m_SizeDelta: {x: 375.46, y: 79.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2099305961
 MonoBehaviour:
@@ -1391,14 +1439,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'A-D or left-right arrow keys for movement
+  m_text: 'A-D or LEFT-RIGHT arrow keys for movement
 
 
-    Spacebar to jump, spacebar
-    again in the air to double jump
+    SPACE to jump, SPACE again
+    in the air to double jump
 
 
-    Q or E in the air to air dash
+    Q to dash left, E to dash right
 
 '
   m_isRightToLeft: 0
@@ -1427,8 +1475,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
