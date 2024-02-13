@@ -48,8 +48,8 @@ public class AirDash : MonoBehaviour
         }
 
         if (!isGrounded && !config.isDashing && Input.GetAxisRaw("Horizontal") != 0) {
-            // rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * config.speed, rb.velocity.y);
-            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * (canDash ? config.speed : Mathf.Abs(rb.velocity.x)), rb.velocity.y);
+            rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * config.speed, rb.velocity.y);
+            // rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * (canDash ? config.speed : Mathf.Abs(rb.velocity.x)), rb.velocity.y);
         }
 
         if ((Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)) && canDash) {

@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour
         
         anim.SetFloat("Vertical", rb.velocity.y);
         anim.SetBool("isGrounded", isGrounded);
-        anim.SetBool("isRunning", rb.velocity.x != 0);
     }
 
     /// <summary>
@@ -71,5 +70,6 @@ public class PlayerController : MonoBehaviour
 
         pressedJump = false;
         releasedJump = false;
+        anim.SetBool("isRunning", rb.velocity.x != 0);
     }
 }
